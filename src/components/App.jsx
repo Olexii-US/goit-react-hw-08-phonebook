@@ -16,6 +16,24 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    try {
+      const contacts =
+        JSON.parse(localStorage.getItem('contacts')) || this.state.contacts;
+      this.setState({ contacts });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    console.log('componentDidUpdate');
+    const { contacts } = this.state;
+    if (prevState.contacts.length !== contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   addUser = obj => {
     const newUser = {
       id: nanoid(),

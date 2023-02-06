@@ -20,7 +20,6 @@ export const Filter = ({ addFilterUser }) => {
         name="inputFind"
         value={inputFind}
         className={css.filterInput}
-        //   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         onChange={hendleChange}
       />
     </label>

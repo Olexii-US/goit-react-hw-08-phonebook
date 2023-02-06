@@ -21,7 +21,6 @@ const contactsSlice = createSlice({
       state.contacts = state.contacts.filter(el => el.id !== payload);
     },
     filterContacts: (state, { payload }) => {
-      console.log('payload', payload);
       state.filter = payload;
     },
   },

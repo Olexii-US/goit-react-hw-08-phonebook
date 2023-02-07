@@ -1,30 +1,48 @@
-import PropTypes from 'prop-types';
-
 import { ContactListElement } from '../ContactListElement/ContactListElement';
 
-export const ContactList = ({ contactData, deleteUser }) => {
+import { useSelector } from 'react-redux';
+import {
+  selectContacts,
+  filterInputContacts,
+} from '../../redux/contactsSelector';
+
+export const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+  const filterByNameContacts = useSelector(filterInputContacts);
+
+  const filteredUser = () => {
+    const filteredContacts = contacts.filter(item =>
+      item.name.toLowerCase().includes(filterByNameContacts)
+    );
+    return filteredContacts;
+  };
+
   return (
     <ul>
-      {contactData.map(({ name, number, id }) => (
-        <ContactListElement
-          key={id}
-          name={name}
-          number={number}
-          id={id}
-          deleteUser={deleteUser}
-        />
-      ))}
+      {filterByNameContacts
+        ? filteredUser().map(({ name, number, id }) => (
+            <ContactListElement key={id} name={name} number={number} id={id} />
+          ))
+        : contacts.map(({ name, number, id }) => (
+            <ContactListElement key={id} name={name} number={number} id={id} />
+          ))}
     </ul>
   );
 };
 
-ContactListElement.propTypes = {
-  deleteUser: PropTypes.func.isRequired,
-  contactData: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ),
-};
+// export const ContactList = () => {
+//   const contacts = useSelector(selectContacts);
+//   const filterByNameContacts = useSelector(filterInputContacts);
+
+//   const filteredContacts = contacts.filter(item =>
+//     item.name.toLowerCase().includes(filterByNameContacts)
+//   );
+
+//   return (
+//     <ul>
+//       {filteredContacts.map(({ name, number, id }) => (
+//         <ContactListElement key={id} name={name} number={number} id={id} />
+//       ))}
+//     </ul>
+//   );
+// };

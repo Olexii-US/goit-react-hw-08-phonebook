@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 
-export const Filter = ({ addFilterUser }) => {
+import { filterContacts } from '../../redux/contactsSlice';
+import { useDispatch } from 'react-redux';
+
+export const Filter = () => {
   const [inputFind, setInputFind] = useState('');
+  const dispatch = useDispatch();
 
   const hendleChange = evt => {
     setInputFind(evt.target.value);
 
     const inputNormalized = evt.target.value.trim().toLowerCase();
-    addFilterUser(inputNormalized);
+    dispatch(filterContacts(inputNormalized));
   };
 
   return (
@@ -24,8 +27,4 @@ export const Filter = ({ addFilterUser }) => {
       />
     </label>
   );
-};
-
-Filter.propTypes = {
-  addFilterUser: PropTypes.func.isRequired,
 };

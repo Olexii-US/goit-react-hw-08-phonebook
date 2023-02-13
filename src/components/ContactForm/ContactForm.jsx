@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { addContacts } from '../../redux/contactsSlice';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/contactsSelector';
-
-import { nanoid } from 'nanoid';
+import { addContact } from 'redux/contactsThunk ';
+import { selectIsLoading } from 'redux/contactsSelector';
+import { toast } from 'react-toastify';
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const isLoading = useSelector(selectIsLoading);
 
   const hendleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -42,18 +45,13 @@ export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
 
   const addUser = obj => {
-    const newUser = {
-      id: nanoid(),
-      ...obj,
-    };
-
     const filteredAlertContacts = contacts.find(
-      item => item.name.toLowerCase() === newUser.name.toLowerCase()
+      item => item.name.toLowerCase() === obj.name.toLowerCase()
     );
 
     filteredAlertContacts
-      ? alert(`${filteredAlertContacts.name} is already in contacts`)
-      : dispatch(addContacts(newUser));
+      ? toast.warn(`${filteredAlertContacts.name} is already in contacts`)
+      : dispatch(addContact(obj));
   };
 
   return (
@@ -84,7 +82,7 @@ export const ContactForm = () => {
           className={css.formInput}
         />
       </label>
-      <button type="submit" className={css.formButton}>
+      <button type="submit" className={css.formButton} disabled={isLoading}>
         Add contact
       </button>
     </form>

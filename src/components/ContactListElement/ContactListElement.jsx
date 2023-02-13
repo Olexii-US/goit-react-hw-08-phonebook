@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 import css from './ContactListElement.module.css';
 
-import { deleteContacts } from '../../redux/contactsSlice';
+import { deleteContact } from 'redux/contactsThunk ';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/contactsSelector';
 
 export const ContactListElement = ({ name, number, id }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+
+  const handleContactDelete = () => dispatch(deleteContact(id));
 
   return (
     <div className={css.listBox}>
@@ -14,8 +19,9 @@ export const ContactListElement = ({ name, number, id }) => {
       </li>
       <button
         type="button"
-        onClick={() => dispatch(deleteContacts(id))}
+        onClick={handleContactDelete}
         className={css.button}
+        disabled={isLoading}
       >
         Delete
       </button>

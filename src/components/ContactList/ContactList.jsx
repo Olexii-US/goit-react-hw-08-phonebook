@@ -6,7 +6,11 @@ import {
   filterInputContacts,
 } from '../../redux/contactsSelector';
 
+import { Loader } from 'components/Loader';
+import { selectIsLoading } from 'redux/contactsSelector';
+
 export const ContactList = () => {
+  const isLoading = useSelector(selectIsLoading);
   const contacts = useSelector(selectContacts);
   const filterByNameContacts = useSelector(filterInputContacts);
 
@@ -18,15 +22,28 @@ export const ContactList = () => {
   };
 
   return (
-    <ul>
-      {filterByNameContacts
-        ? filteredUser().map(({ name, number, id }) => (
-            <ContactListElement key={id} name={name} number={number} id={id} />
-          ))
-        : contacts.map(({ name, number, id }) => (
-            <ContactListElement key={id} name={name} number={number} id={id} />
-          ))}
-    </ul>
+    <>
+      <ul>
+        {filterByNameContacts
+          ? filteredUser().map(({ name, number, id }) => (
+              <ContactListElement
+                key={id}
+                name={name}
+                number={number}
+                id={id}
+              />
+            ))
+          : contacts.map(({ name, number, id }) => (
+              <ContactListElement
+                key={id}
+                name={name}
+                number={number}
+                id={id}
+              />
+            ))}
+      </ul>
+      {isLoading && <Loader />}
+    </>
   );
 };
 

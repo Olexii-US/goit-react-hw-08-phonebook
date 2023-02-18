@@ -10,6 +10,7 @@ const handleRejected = (state, action) => {
   state.contacts.error = action.error.message;
   toast.error(state.contacts.error);
 };
+// console.log(handleRejected);
 
 const contactsSlice = createSlice({
   name: 'contacts',

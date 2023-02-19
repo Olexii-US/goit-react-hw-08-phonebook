@@ -1,10 +1,10 @@
 const UserMenu = () => {
   return (
-    <main>
+    <div>
       UserMenu
-      <p>Welcome USERRRRRRRRR </p>
+      <p>Welcome mango@mail.com </p>
       <button type="button">Logout</button>
-    </main>
+    </div>
   );
 };
 export default UserMenu;

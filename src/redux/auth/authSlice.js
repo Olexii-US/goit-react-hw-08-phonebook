@@ -1,4 +1,4 @@
-import { register, logIn, logOut } from './authThunk';
+import { register, logIn, logOut, refreshUser } from './authThunk';
 import { toast } from 'react-toastify';
 
 const { createSlice } = require('@reduxjs/toolkit');
@@ -47,6 +47,19 @@ const authSlice = createSlice({
       })
       .addCase(logOut.rejected, (state, action) => {
         toast.error(action.error.message);
+        return state;
+      })
+      .addCase(refreshUser.pending, (state, action) => {
+        state.isRefreshing = true;
+        return state;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
         return state;
       });
   },

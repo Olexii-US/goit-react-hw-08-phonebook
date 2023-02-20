@@ -29,3 +29,20 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   removeAuthHeader();
   return res.data;
 });
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().auth;
+
+    if (!token) {
+      console.log('ERORRRRRRRR');
+
+      return thunkAPI.rejectWithValue('No valid token');
+    }
+    setAuthHeader(token);
+
+    const res = await priveteApi.get('/users/current');
+    return res.data;
+  }
+);

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import css from 'components/FormCommon.module.css';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authThunk';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +11,8 @@ const LoginForm = () => {
     setEmail('');
     setPassword('');
   };
+
+  const dispatch = useDispatch();
 
   const hendleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -25,8 +29,7 @@ const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    const sendFormInfo = { email, password };
+    dispatch(logIn({ email, password }));
     resetForm();
   };
 

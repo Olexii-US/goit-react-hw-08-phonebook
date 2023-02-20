@@ -1,3 +1,4 @@
+import { useAuth } from 'hooks/useAuth';
 import AuthNav from '../AuthNav/AuthNav ';
 import Navigation from '../Navigation/Navigation';
 import UserMenu from '../UserMenu/UserMenu';
@@ -5,12 +6,12 @@ import UserMenu from '../UserMenu/UserMenu';
 import css from './Header.module.css';
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <header className={css.header}>
       Header
       <Navigation />
-      <UserMenu />
-      <AuthNav />
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
   );
 };

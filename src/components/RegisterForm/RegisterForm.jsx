@@ -35,9 +35,6 @@ const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(register({ name, email, password }));
-    // dispatch(yourThunkFn({ name, email, password }));
-    // or Fetch.....
-    // const sendFormInfo = { name, email, password };
     resetForm();
   };
 

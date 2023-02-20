@@ -1,16 +1,31 @@
-import { publicApi } from 'api/api';
+import {
+  publicApi,
+  priveteApi,
+  setAuthHeader,
+  removeAuthHeader,
+} from 'api/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
 
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     const res = await publicApi.post('/users/signup', credentials);
-    // const res = await axios.post(
-    //   'https://connections-api.herokuapp.com/users/signup',
-    //   credentials
-    // );
-    return res;
+    setAuthHeader(res.data.token);
+    return res.data;
   }
 );
+
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
+    const res = await publicApi.post('/users/login', credentials);
+    setAuthHeader(res.data.token);
+    return res.data;
+  }
+);
+
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  const res = await priveteApi.post('/users/logout');
+  removeAuthHeader();
+  return res.data;
+});

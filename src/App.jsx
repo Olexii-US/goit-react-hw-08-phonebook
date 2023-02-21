@@ -27,7 +27,6 @@ export const App = () => {
   return (
     !isRefreshing && (
       <div style={{ padding: '40px' }}>
-        <h1>Phonebook</h1>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

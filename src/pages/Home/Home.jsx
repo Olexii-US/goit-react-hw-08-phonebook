@@ -1,13 +1,16 @@
-import { useAuth, user } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { Link } from 'react-router-dom';
+
+import bgImg from '../../book.png';
 
 import css from './Home.module.css';
 const Home = () => {
   const { isLoggedIn, user } = useAuth();
 
   return (
-    <main>
+    <main className={css.main}>
       <h1>Welcome in Phone Book!</h1>
+      {/* <img src={bgImg} width="1000px" alt="book" /> */}
       {isLoggedIn ? (
         <>
           <h2>

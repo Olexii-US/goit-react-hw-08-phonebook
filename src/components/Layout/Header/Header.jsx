@@ -1,3 +1,4 @@
+import { ImAddressBook } from 'react-icons/im';
 import { useAuth } from 'hooks/useAuth';
 import AuthNav from '../AuthNav/AuthNav ';
 import Navigation from '../Navigation/Navigation';
@@ -9,7 +10,8 @@ const Header = () => {
   const { isLoggedIn } = useAuth();
   return (
     <header className={css.header}>
-      Header
+      <ImAddressBook />
+      <p>PhoneBook</p>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>

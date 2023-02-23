@@ -1,9 +1,10 @@
 import LoginForm from 'components/LoginForm/LoginForm';
+import { HeadersStyle } from './Login.styled';
 
 const Login = () => {
   return (
     <main>
-      <h1>Login</h1>
+      <HeadersStyle>Login</HeadersStyle>
       <LoginForm />
     </main>
   );

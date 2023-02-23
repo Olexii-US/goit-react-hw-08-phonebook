@@ -10,6 +10,9 @@ import { useAuth } from 'hooks/useAuth';
 import Layout from 'components/Layout/Layout';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivatedRoute } from 'components/PrivateRoute';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'styleGlobal/theme';
+import NotFound from 'components/NotFound/NotFound';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));
@@ -26,7 +29,7 @@ export const App = () => {
 
   return (
     !isRefreshing && (
-      <div style={{ padding: '40px' }}>
+      <ThemeProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -45,17 +48,17 @@ export const App = () => {
                 <RestrictedRoute component={<Login />} redirectTo="/contacts" />
               }
             />
-            PrivatedRoute
             <Route
               path="/contacts"
               element={
                 <PrivatedRoute component={<Contacts />} redirectTo="/login" />
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
         <ToastContainer />
-      </div>
+      </ThemeProvider>
     )
   );
 };

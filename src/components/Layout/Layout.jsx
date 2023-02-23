@@ -1,16 +1,18 @@
+import Footer from 'components/Footer/Footer';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
+import { LayoutBox } from './Layout.styled';
 
 const Layout = () => {
   return (
-    <div>
-      Layout
+    <LayoutBox>
       <Header />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </div>
+      <Footer />
+    </LayoutBox>
   );
 };
 export default Layout;

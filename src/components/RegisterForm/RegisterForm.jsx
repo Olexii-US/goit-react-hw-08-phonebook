@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import css from 'components/FormCommon.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authThunk';
+import { useAuth } from 'hooks/useAuth';
+import {
+  FormBox,
+  FormLabel,
+  FormInput,
+  FormButton,
+} from 'components/FormCommon.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -13,6 +19,8 @@ const RegisterForm = () => {
     setEmail('');
     setPassword('');
   };
+
+  const { isAuthLoading } = useAuth();
 
   const dispatch = useDispatch();
 
@@ -39,45 +47,38 @@ const RegisterForm = () => {
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit} className={css.form}>
-      <label className={css.formLabel}>
+    <FormBox autoComplete="off" onSubmit={handleSubmit}>
+      <FormLabel>
         User Name
-        <input
+        <FormInput
           type="text"
           name="name"
           value={name}
           onChange={hendleChange}
-          className={css.formInput}
         />
-      </label>
-      <label className={css.formLabel}>
+      </FormLabel>
+      <FormLabel>
         Email
-        <input
+        <FormInput
           type="email"
           name="email"
           value={email}
           onChange={hendleChange}
-          className={css.formInput}
         />
-      </label>
-      <label className={css.formLabel}>
+      </FormLabel>
+      <FormLabel>
         Password
-        <input
+        <FormInput
           type="password"
           name="password"
           value={password}
           onChange={hendleChange}
-          className={css.formInput}
         />
-      </label>
-      <button
-        type="submit"
-        className={css.formButton}
-        // disabled={isLoading}
-      >
+      </FormLabel>
+      <FormButton type="submit" disabled={isAuthLoading}>
         Register
-      </button>
-    </form>
+      </FormButton>
+    </FormBox>
   );
 };
 

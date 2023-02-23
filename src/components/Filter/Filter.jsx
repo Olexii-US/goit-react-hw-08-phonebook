@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import css from './Filter.module.css';
 
 import { filterContacts } from '../../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
+
+import { FormLabel, FilterInput } from './Filter.styled';
 
 export const Filter = () => {
   const [inputFind, setInputFind] = useState('');
@@ -16,15 +17,14 @@ export const Filter = () => {
   };
 
   return (
-    <label className={css.filterForm}>
+    <FormLabel>
       Find contacts by name
-      <input
+      <FilterInput
         type="text"
         name="inputFind"
         value={inputFind}
-        className={css.filterInput}
         onChange={hendleChange}
       />
-    </label>
+    </FormLabel>
   );
 };

@@ -1,46 +1,44 @@
 import { useAuth } from 'hooks/useAuth';
-import { Link } from 'react-router-dom';
 
-import bgImg from '../../book.png';
+import {
+  MainHome,
+  HeroHeader,
+  Info,
+  HomeText,
+  LinkStyle,
+  UserSpan,
+} from './Home.styled';
 
-import css from './Home.module.css';
+// import bgImg from '../../book.png';
+
 const Home = () => {
   const { isLoggedIn, user } = useAuth();
 
   return (
-    <main className={css.main}>
-      <h1>Welcome in Phone Book!</h1>
+    <MainHome>
+      <HeroHeader>Welcome in Phone Book!</HeroHeader>
       {/* <img src={bgImg} width="1000px" alt="book" /> */}
       {isLoggedIn ? (
         <>
-          <h2>
+          <Info>
             An useful database app for managing your{' '}
-            <Link to="/contacts" className={css.link}>
-              contacts
-            </Link>
-            .
-          </h2>
-          <p>
-            Welcome back <b>{user.name}</b>! Thank you for choosing our app!
-          </p>
+            <LinkStyle to="/contacts">contacts</LinkStyle>.
+          </Info>
+          <HomeText>
+            Welcome back <UserSpan>{user.name}</UserSpan>! Thank you for
+            choosing our app!
+          </HomeText>
         </>
       ) : (
         <>
-          <h2>An useful database app for managing your contacts.</h2>
-          <p>
-            Please{' '}
-            <Link to="/register" className={css.link}>
-              Register
-            </Link>{' '}
-            or{' '}
-            <Link to="/login" className={css.link}>
-              Log In
-            </Link>{' '}
-            to continue.
-          </p>
+          <Info>An useful database app for managing your contacts.</Info>
+          <HomeText>
+            Please <LinkStyle to="/register">Register</LinkStyle> or{' '}
+            <LinkStyle to="/login">Log In</LinkStyle> to continue.
+          </HomeText>
         </>
       )}
-    </main>
+    </MainHome>
   );
 };
 export default Home;

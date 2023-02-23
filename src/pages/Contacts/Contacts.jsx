@@ -4,6 +4,13 @@ import { Filter } from 'components/Filter/Filter';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contactsThunk ';
+import {
+  HeadersStyle,
+  SpanStyle,
+  FilterBox,
+  ConcactBox,
+  ElementBox,
+} from './Contacts.styled';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -13,13 +20,23 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <main>
-      <h1>Contacts</h1>
-      <ContactForm />
-      <h2 style={{ fontSize: '32px' }}>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </main>
+    <ConcactBox>
+      <ElementBox>
+        <HeadersStyle>
+          Add new <SpanStyle>contact</SpanStyle>
+        </HeadersStyle>
+        <ContactForm />
+      </ElementBox>
+      <div>
+        <HeadersStyle>
+          My <SpanStyle>contact</SpanStyle>
+        </HeadersStyle>
+        <FilterBox>
+          <Filter />
+          <ContactList />
+        </FilterBox>
+      </div>
+    </ConcactBox>
   );
 };
 export default Contacts;

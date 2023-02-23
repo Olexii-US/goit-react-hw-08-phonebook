@@ -1,6 +1,7 @@
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/authThunk';
+import { UserSpan, UserMenuBox, UserInfo, LogoutBtn } from './UserMenu.styled';
 
 const UserMenu = () => {
   const { user } = useAuth();
@@ -11,14 +12,17 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
-      UserMenu
-      <p>Welcome {user.name}!</p>
-      <p>{user.email}</p>
-      <button type="button" onClick={onLogoutClick}>
+    <UserMenuBox>
+      <UserInfo>
+        <p>
+          Welcome <UserSpan>{user.name}</UserSpan>!
+        </p>
+        <p>{user.email}</p>
+      </UserInfo>
+      <LogoutBtn type="button" onClick={onLogoutClick}>
         Logout
-      </button>
-    </div>
+      </LogoutBtn>
+    </UserMenuBox>
   );
 };
 export default UserMenu;

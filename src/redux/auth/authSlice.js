@@ -2,6 +2,9 @@ import { register, logIn, logOut, refreshUser } from './authThunk';
 import { toast } from 'react-toastify';
 
 const { createSlice } = require('@reduxjs/toolkit');
+const handlePending = state => {
+  state.isAuthLoading = true;
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -10,43 +13,44 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isAuthLoading: false,
   },
   extraReducers: builder => {
     builder
-      .addCase(register.pending, (state, action) => {
-        return state;
-      })
+      .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.isAuthLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
         toast.error(action.error.message);
+        state.isAuthLoading = false;
         return state;
       })
-      .addCase(logIn.pending, (state, action) => {
-        return state;
-      })
+      .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.isAuthLoading = false;
       })
       .addCase(logIn.rejected, (state, action) => {
         toast.error(action.error.message);
+        state.isAuthLoading = false;
         return state;
       })
-      .addCase(logOut.pending, (state, action) => {
-        return state;
-      })
+      .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isAuthLoading = false;
       })
       .addCase(logOut.rejected, (state, action) => {
         toast.error(action.error.message);
+        state.isAuthLoading = false;
         return state;
       })
       .addCase(refreshUser.pending, (state, action) => {

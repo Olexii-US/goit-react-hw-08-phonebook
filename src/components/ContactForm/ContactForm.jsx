@@ -5,7 +5,12 @@ import { selectContacts } from '../../redux/contactsSelector';
 import { addContact } from 'redux/contactsThunk ';
 import { selectIsLoading } from 'redux/contactsSelector';
 import { toast } from 'react-toastify';
-import css from './ContactForm.module.css';
+import {
+  FormBox,
+  FormLabel,
+  FormInput,
+  FormButton,
+} from 'components/FormCommon.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -55,10 +60,10 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off" className={css.form}>
-      <label className={css.formLabel}>
+    <FormBox onSubmit={handleSubmit} autoComplete="off">
+      <FormLabel>
         Name
-        <input
+        <FormInput
           type="text"
           name="name"
           value={name}
@@ -66,12 +71,11 @@ export const ContactForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={hendleChange}
-          className={css.formInput}
         />
-      </label>
-      <label className={css.formLabel}>
+      </FormLabel>
+      <FormLabel>
         Number
-        <input
+        <FormInput
           type="tel"
           name="number"
           value={number}
@@ -79,12 +83,11 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={hendleChange}
-          className={css.formInput}
         />
-      </label>
-      <button type="submit" className={css.formButton} disabled={isLoading}>
+      </FormLabel>
+      <FormButton type="submit" disabled={isLoading}>
         Add contact
-      </button>
-    </form>
+      </FormButton>
+    </FormBox>
   );
 };

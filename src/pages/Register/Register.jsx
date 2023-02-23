@@ -1,9 +1,10 @@
 import RegisterForm from 'components/RegisterForm/RegisterForm';
+import { HeadersStyle } from './Register.styled';
 
 const Register = () => {
   return (
     <main>
-      <h1>Register</h1>
+      <HeadersStyle>Register</HeadersStyle>
       <RegisterForm />
     </main>
   );

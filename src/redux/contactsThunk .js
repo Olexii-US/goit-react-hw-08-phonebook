@@ -3,8 +3,6 @@ import { priveteApi } from 'api/api';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   const { data } = await priveteApi.get('/contacts');
-  console.log('data get', data);
-
   return data;
 });
 

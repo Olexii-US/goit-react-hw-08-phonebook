@@ -1,15 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const MainHome = styled.main`
-  /* margin-bottom: 80px; */
-  /* width: 1280px; */
-  /* background-image: url('../../book.png'); */
-  /* background-repeat: no-repeat; */
-  /* background-size: contain; */
-  /* background-size: 50%; */
-`;
-
 export const HeroHeader = styled.h1`
   margin-top: 40px;
 `;

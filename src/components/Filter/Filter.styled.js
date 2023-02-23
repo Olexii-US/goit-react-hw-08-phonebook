@@ -1,20 +1,9 @@
 import styled from 'styled-components';
 
-// export const FormBox = styled.form`
-//   display: flex;
-//   flex-direction: column;
-
-//   width: 300px;
-//   padding: 20px;
-//   margin-bottom: 16px;
-
-//   border: 1px solid ${props => props.theme.colors.accentMain};
-// `;
-
 export const FormLabel = styled.label`
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 300px;
   font-size: 20px;
 `;
 

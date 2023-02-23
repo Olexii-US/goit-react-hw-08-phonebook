@@ -7,7 +7,7 @@ export const FooterBox = styled.footer`
   width: 100%;
   background: #333;
 
-  padding: 14px;
+  padding: 8px;
   text-align: center;
 
   border-top: 1px solid ${props => props.theme.colors.accentMain};

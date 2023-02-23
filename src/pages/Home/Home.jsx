@@ -1,7 +1,6 @@
 import { useAuth } from 'hooks/useAuth';
 
 import {
-  MainHome,
   HeroHeader,
   Info,
   HomeText,
@@ -15,7 +14,7 @@ const Home = () => {
   const { isLoggedIn, user } = useAuth();
 
   return (
-    <MainHome>
+    <main>
       <HeroHeader>Welcome in Phone Book!</HeroHeader>
       {/* <img src={bgImg} width="1000px" alt="book" /> */}
       {isLoggedIn ? (
@@ -38,7 +37,7 @@ const Home = () => {
           </HomeText>
         </>
       )}
-    </MainHome>
+    </main>
   );
 };
 export default Home;

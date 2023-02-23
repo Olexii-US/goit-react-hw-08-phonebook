@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { ImAddressBook } from 'react-icons/im';
 
 export const HeaderBox = styled.header`
-  padding-top: 20px;
-  /* padding-left: 40px; */
+  padding-top: 10px;
   position: fixed;
   left: 0;
   top: 0;
@@ -16,9 +15,8 @@ export const NavBox = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
-  /* margin-bottom: 16px; */
   border-bottom: 1px solid ${props => props.theme.colors.accentMain};
-  height: 60px;
+  height: 42px;
 `;
 
 export const Logo = styled(ImAddressBook)`

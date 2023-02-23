@@ -25,19 +25,6 @@ export const LogoutBtn = styled.button`
   :hover,
   :focus {
     color: ${props => props.theme.colors.accentMain};
-    text-shadow: 0px 6px 13px ${props => props.theme.colors.accentText};
+    text-shadow: 0px 6px 13px ${props => props.theme.colors.accentMain};
   }
-
-  /* background-color: ${props => props.theme.colors.nainLigth};
-  border: 1px solid transparent;
-  border-radius: 2px;
-  box-shadow: 0px 3px 1px rgba(76, 198, 255, 0.2),
-    0px 1px 2px rgba(76, 198, 255, 0.2), 0px 2px 2px rgba(76, 198, 255, 0.18); */
-  /* :hover,
-  :focus {
-    background-color: ${props => props.theme.colors.accentBg};
-    border: 1px solid ${props => props.theme.colors.accentBg};
-    box-shadow: 0 0 2px 0 rgba(76, 198, 255, 0.8) inset,
-      0 0 2px 2px rgba(76, 198, 255, 0.8);
-  } */
 `;

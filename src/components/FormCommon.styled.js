@@ -4,7 +4,7 @@ export const FormBox = styled.form`
   display: flex;
   flex-direction: column;
 
-  width: 300px;
+  width: 360px;
   padding: 20px;
   margin-bottom: 16px;
 
@@ -14,7 +14,8 @@ export const FormBox = styled.form`
 export const FormLabel = styled.label`
   display: flex;
   flex-direction: column;
-  width: 280px;
+  /* width: 100%; */
+  width: 300px;
   font-size: 20px;
 `;
 

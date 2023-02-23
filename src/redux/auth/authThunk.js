@@ -36,8 +36,6 @@ export const refreshUser = createAsyncThunk(
     const { token } = thunkAPI.getState().auth;
 
     if (!token) {
-      console.log('ERORRRRRRRR');
-
       return thunkAPI.rejectWithValue('No valid token');
     }
     setAuthHeader(token);

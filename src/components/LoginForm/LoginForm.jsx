@@ -9,6 +9,8 @@ import {
   FormButton,
 } from 'components/FormCommon.styled';
 
+import { LinkStyle, BtnBox } from './LoginForm.styled';
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,9 +61,12 @@ const LoginForm = () => {
           onChange={hendleChange}
         />
       </FormLabel>
-      <FormButton type="submit" disabled={isAuthLoading}>
-        Log In
-      </FormButton>
+      <BtnBox>
+        <FormButton type="submit" disabled={isAuthLoading}>
+          Log In
+        </FormButton>
+        <LinkStyle to="/register">No account?</LinkStyle>
+      </BtnBox>
     </FormBox>
   );
 };

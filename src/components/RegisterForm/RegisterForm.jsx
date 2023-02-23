@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authThunk';
 import { useAuth } from 'hooks/useAuth';
+// import { BsBoxArrowInRight } from 'react-icons/bs';
 import {
   FormBox,
   FormLabel,
   FormInput,
   FormButton,
 } from 'components/FormCommon.styled';
+
+import { LinkStyle, BtnBox } from './RegisterForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -75,9 +78,13 @@ const RegisterForm = () => {
           onChange={hendleChange}
         />
       </FormLabel>
-      <FormButton type="submit" disabled={isAuthLoading}>
-        Register
-      </FormButton>
+      <BtnBox>
+        <FormButton type="submit" disabled={isAuthLoading}>
+          Register
+        </FormButton>
+        <LinkStyle to="/login">Already registered?</LinkStyle>
+        {/* <BsBoxArrowInRight /> */}
+      </BtnBox>
     </FormBox>
   );
 };

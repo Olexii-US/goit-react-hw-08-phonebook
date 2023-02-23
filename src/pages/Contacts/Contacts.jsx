@@ -29,7 +29,7 @@ const Contacts = () => {
       </ElementBox>
       <div>
         <HeadersStyle>
-          My <SpanStyle>contact</SpanStyle>
+          My <SpanStyle>contacts</SpanStyle>
         </HeadersStyle>
         <FilterBox>
           <Filter />

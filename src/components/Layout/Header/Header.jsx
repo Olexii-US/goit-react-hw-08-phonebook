@@ -9,7 +9,7 @@ const Header = () => {
   const { isLoggedIn } = useAuth();
   return (
     <HeaderBox>
-      <LogoText>
+      <LogoText to="/">
         <Logo /> Phone<LogoSpan>Book</LogoSpan>
       </LogoText>
       <NavBox>

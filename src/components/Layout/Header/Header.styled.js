@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ImAddressBook } from 'react-icons/im';
+import { Link } from 'react-router-dom';
 
 export const HeaderBox = styled.header`
   padding-top: 10px;
@@ -24,7 +25,9 @@ export const Logo = styled(ImAddressBook)`
   margin-right: 4px;
 `;
 
-export const LogoText = styled.p`
+export const LogoText = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.nainLigth};
   font-size: 28px;
   font-weight: 500;
 `;

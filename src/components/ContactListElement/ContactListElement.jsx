@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectIsLoading } from 'redux/contactsSelector';
-import { Modal } from 'components/Modal/Modal';
+import { PopUpDeletel } from 'components/Modal/PopUpDeletel';
 import {
   ListBox,
   ListItem,
   ListText,
   DeleteBtn,
 } from './ContactListElement.styled';
-
+///////////
+import { ModalBase } from '../ModalBase/ModalBase';
+///////////////
 export const ContactListElement = ({ name, number, id }) => {
   const [userId, setUserId] = useState('');
 
@@ -47,7 +49,13 @@ export const ContactListElement = ({ name, number, id }) => {
           </DeleteBtn>
         </ListBox>
       </ListItem>
-      {userId && <Modal id={userId} closeModal={closeModal} />}
+      {/* {userId && <Modal id={userId} closeModal={closeModal} />} */}
+
+      {userId && (
+        <ModalBase closeModal={closeModal}>
+          <PopUpDeletel id={userId} closeModal={closeModal} />
+        </ModalBase>
+      )}
     </>
   );
 };

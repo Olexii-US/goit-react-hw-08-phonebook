@@ -21,3 +21,16 @@ export const deleteContact = createAsyncThunk(
     return data;
   }
 );
+
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, name, number }) => {
+    const { data } = await priveteApi.patch(`/contacts/${id}`, {
+      name,
+      number,
+    });
+    console.log('data in thunk', data);
+
+    return data;
+  }
+);

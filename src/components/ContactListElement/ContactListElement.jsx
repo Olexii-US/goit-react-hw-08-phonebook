@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectIsLoading } from 'redux/contactsSelector';
 import { PopUpDeletel } from 'components/Modal/PopUpDeletel';
+import { ContactUpdate } from '../ContactUpdate/ContactUpdate';
 import {
   ListBox,
   ListItem,
@@ -15,15 +16,18 @@ import { ModalBase } from '../ModalBase/ModalBase';
 ///////////////
 export const ContactListElement = ({ name, number, id }) => {
   const [userId, setUserId] = useState('');
+  //////////////////////edit//////////
+  const [btnName, setBtnName] = useState(null);
 
-  const setId = id => {
-    setUserId(id);
-  };
+  // const setId = id => {
+  //   setUserId(id);
+  // };
 
   const isLoading = useSelector(selectIsLoading);
 
   const closeModal = () => {
     setUserId('');
+    setBtnName(null);
     document.body.style.overflow = 'unset';
   };
   ///////////prevent scroll
@@ -32,6 +36,11 @@ export const ContactListElement = ({ name, number, id }) => {
       document.body.style.overflow = 'hidden';
     }
   }, [userId]);
+
+  const btnHendler = e => {
+    setBtnName(e.target.name);
+    setUserId(id);
+  };
 
   return (
     <>
@@ -42,8 +51,17 @@ export const ContactListElement = ({ name, number, id }) => {
           </ListText>
           <DeleteBtn
             type="button"
-            onClick={() => setId(id)}
+            onClick={btnHendler}
             disabled={isLoading}
+            name="edit"
+          >
+            Edit
+          </DeleteBtn>
+          <DeleteBtn
+            type="button"
+            onClick={btnHendler}
+            disabled={isLoading}
+            name="delete"
           >
             Delete
           </DeleteBtn>
@@ -51,9 +69,24 @@ export const ContactListElement = ({ name, number, id }) => {
       </ListItem>
       {/* {userId && <Modal id={userId} closeModal={closeModal} />} */}
 
-      {userId && (
+      {/* {userId && btnName === 'edit' && (
+        <ModalBase closeModal={closeModal}>
+          <ContactUpdate id={userId} closeModal={closeModal} />
+        </ModalBase>
+      )}
+      {userId && btnName === 'delete' && (
         <ModalBase closeModal={closeModal}>
           <PopUpDeletel id={userId} closeModal={closeModal} />
+        </ModalBase>
+      )} */}
+
+      {userId && (
+        <ModalBase closeModal={closeModal}>
+          {btnName === 'edit' ? (
+            <ContactUpdate id={userId} closeModal={closeModal} />
+          ) : (
+            <PopUpDeletel id={userId} closeModal={closeModal} />
+          )}
         </ModalBase>
       )}
     </>

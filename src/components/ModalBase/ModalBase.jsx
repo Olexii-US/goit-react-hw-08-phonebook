@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Overlay, ModalStyles } from './ModalBase.styled';
+
+const modalRoot = document.querySelector('#modal-root');
 
 export const ModalBase = ({ closeModal, children }) => {
   //////////ESC close///////////
@@ -23,10 +26,11 @@ export const ModalBase = ({ closeModal, children }) => {
     }
   };
 
-  return (
+  return createPortal(
     <Overlay onClick={handleBackdrop}>
       <ModalStyles>{children}</ModalStyles>
-    </Overlay>
+    </Overlay>,
+    modalRoot
   );
 };
 

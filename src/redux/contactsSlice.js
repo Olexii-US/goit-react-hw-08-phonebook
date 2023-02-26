@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './contactsThunk ';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  editContact,
+} from './contactsThunk ';
 import { toast } from 'react-toastify';
 
 const handlePending = state => {
@@ -50,7 +55,22 @@ const contactsSlice = createSlice({
           el => el.id !== payload.id
         );
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(editContact.pending, handlePending)
+      .addCase(editContact.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
+        state.error = null;
+        console.log('state', state);
+        console.log('payload', payload);
+        state.contacts.items = state.contacts.items.map(el => {
+          if (el.id === payload.id) {
+            return payload;
+          } else {
+            return el;
+          }
+        });
+      })
+      .addCase(editContact.rejected, handleRejected);
   },
 });
 

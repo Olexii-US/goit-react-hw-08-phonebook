@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/contactsSelector';
 import { selectIsLoading } from 'redux/contactsSelector';
 import { editContact } from 'redux/contactsThunk ';
+import { FormLabel, FormInput } from 'components/FormCommon.styled';
 import {
-  FormBox,
-  FormLabel,
-  FormInput,
-  FormButton,
-} from 'components/FormCommon.styled';
+  FormEditBox,
+  FormEditButton,
+  EditButtonBox,
+} from './ContactUpdate.styled';
 
 export const ContactUpdate = ({ id, closeModal }) => {
   const contacts = useSelector(selectContacts);
@@ -43,22 +43,10 @@ export const ContactUpdate = ({ id, closeModal }) => {
     e.preventDefault();
     dispatch(editContact(updateData));
     closeModal();
-
-    // addUser({ name, number });
-
-    // const filteredContacts = contacts.find(
-    //   item => item.name.toLowerCase() === name.toLowerCase()
-    // );
-    // if (!filteredContacts) {
-    //   setName('');
-    //   setNumber('');
-    // }
   };
 
-  ////////////// Redux ////////////////////////
-
   return (
-    <FormBox onSubmit={handleSubmit} autoComplete="off">
+    <FormEditBox onSubmit={handleSubmit} autoComplete="off">
       <FormLabel>
         Name
         <FormInput
@@ -83,12 +71,14 @@ export const ContactUpdate = ({ id, closeModal }) => {
           onChange={hendleChange}
         />
       </FormLabel>
-      <FormButton type="submit" disabled={isLoading}>
-        Edit contact
-      </FormButton>
-      <FormButton type="submit" disabled={isLoading} onClick={closeModal}>
-        Cancel
-      </FormButton>
-    </FormBox>
+      <EditButtonBox>
+        <FormEditButton type="submit" disabled={isLoading}>
+          Edit contact
+        </FormEditButton>
+        <FormEditButton type="button" disabled={isLoading} onClick={closeModal}>
+          Cancel
+        </FormEditButton>
+      </EditButtonBox>
+    </FormEditBox>
   );
 };

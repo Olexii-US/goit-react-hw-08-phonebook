@@ -1,32 +1,5 @@
 import styled from 'styled-components';
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1200;
-`;
-
-export const ModalStyles = styled.div`
-  background-color: ${props => props.theme.colors.nainLigth};
-  margin: auto;
-  padding: 24px 20px;
-  /* width: 50%; */
-  box-shadow: 0 0 2px 0 rgba(76, 198, 255, 0.8) inset,
-    0 0 2px 2px rgba(76, 198, 255, 0.8);
-  z-index: 15;
-
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-`;
-
 export const BtnList = styled.ul`
   list-style: none;
   display: flex;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsThunk ';
-import { BtnList, FormButton } from './Modal.styled';
+import { BtnList, FormButton } from './PopUpDelete.styled';
 
 export const PopUpDeletel = ({ id, closeModal }) => {
   const dispatch = useDispatch();
